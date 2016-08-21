@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app='redditVideo'>
+  <head>
+    <meta charset="utf-8" />
+    <title>redditVideo</title>
+    <link rel="stylesheet" type="text/css" href="assets/style.css" />
+  </head>
+  <body ng-controller="VideoController">
+    <nav>
+      <h1>redditVideo</h1>
+      <a href="">Menu</>
+    </nav>
+
+    <div ng-view ng-show="videoList" class="ng-cloak">
+      <ul >
+        <li ng-repeat="video in videoList" >
+          <p>{{ video }}</p>
+        </li>
+      </ul>
+
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>

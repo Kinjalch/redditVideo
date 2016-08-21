@@ -4,13 +4,33 @@ var reddit = require('redwrap');
 var _ = require('underscore');
 
 var app = express();
-
 var port = process.env.PORT || 1337;
 
-app.get('/', function(req, res){
-  res.send('hello');
+// Middleware
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5,  Date, X-Api-Version, X-File-Name');
+  next();
 });
 
+
+// Routes
+app.use( express.static('./client/') );
+app.get('/api/vids', function(req, res){
+  Promise.all([
+      getDocs(),
+      getWierd(),
+      getVids()
+  ])
+  .then(function(){
+    var newArr = _.shuffle(videos);
+    videos = [];
+    res.json(newArr);
+  })
+});
+
+// API stuff
 var videos = [];
 function pushVideos(data){
   for(var i = 0; i < data.data.children.length; i++){
@@ -20,7 +40,7 @@ function pushVideos(data){
 function getDocs() {
   return new Promise(
     function(resolve, reject) {
-      reddit.r('documentaries').sort('top').from('year').limit(5, function(err, data, res){
+      reddit.r('documentaries').sort('top').from('week').limit(5, function(err, data, res){
         //console.log(data.data.children);
         pushVideos(data)
         resolve(data);
@@ -31,7 +51,7 @@ function getDocs() {
 function getWierd() {
   return new Promise(
     function(resolve, reject) {
-      reddit.r('interdimensionalcable').sort('top').from('year').limit(5, function(err, data, res){
+      reddit.r('interdimensionalcable').sort('top').from('week').limit(5, function(err, data, res){
         //console.log(data.data.children);
         pushVideos(data)
         resolve(data);
@@ -42,7 +62,7 @@ function getWierd() {
 function getVids() {
   return new Promise(
     function(resolve, reject) {
-      reddit.r('videos').sort('top').from('year').limit(5, function(err, data, res){
+      reddit.r('videos').sort('top').from('week').limit(5, function(err, data, res){
         //console.log(data.data.children);
         pushVideos(data)
         resolve(data);
@@ -50,44 +70,6 @@ function getVids() {
       });
     });
 }
-Promise.all([
-    getDocs(),
-    getWierd(),
-    getVids()
-])
-.then(function(){
-  var newArr = _.shuffle(videos);
-  console.log(newArr);
-})
-var tmp = [1,2,3,4,5];
-console.log(_.shuffle(tmp));
-// getVids()
-// .then(function(data){
-//   console.log('in then');
-//   console.log(videos);
-// })
-// .catch(function(err){
-//   console.log("error: ", err);
-// })
-// var url = 'https://www.reddit.com/r/documentaries/top.json?sort=top&t=all';
-// var videoList;
-//
-// var setList = function(body){
-//   videoList = JSON.parse(body).data.children;
-//
-//   for(var i = 0; i < videoList.length; i++){
-//     console.log(videoList[i].data.title);
-//     console.log(videoList[i].data.url+'\n');
-//   }
-// }
-//
-// request(url , function (error, response, body){
-//   if (!error && response.statusCode == 200) {
-//     //videoList = JSON.parse(body).data.children;
-//     setList(body);
-//   }
-// })
-
 
 app.listen(port);
 console.log('Listening @ http://localhost:' + port);
