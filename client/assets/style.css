@@ -1,6 +1,57 @@
 .ng-cloak {
   display: none !important;
 }
+body {
+  margin: auto;
+  width: 720px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
 nav {
   display: inline;
+  height: 90px;
+  padding-bottom:5px;
+}
+#logo{
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 59px;
+  width: 84px;
+}
+#spinner{
+  padding-top: 75px;
+  height: 145px;
+  width: 220px;
+  display: block;
+  margin: 0 auto;
+}
+.vidList{
+  width: 720px;
+}
+.listContainer {
+  width: 710px;
+  height: 120px;
+  display: block;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+div.listContainer:hover {
+  background-color: #f9f9f9;
+}
+.imgBox{
+  height: 120px;
+  width: 120px;
+  display: block;
+  float: left;
+  position: relative;
+
+}
+.infoBox{
+  height: 120px;
+  width: 550px;
+  display: inline-block;
+  float: right;
+  position: relative;
+  font-size: 12px;
 }

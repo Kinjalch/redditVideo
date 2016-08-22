@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html ng-app='redditVideo'>
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <title>redditVideo</title>
     <link rel="stylesheet" type="text/css" href="assets/style.css" />
-  </head>
-  <body ng-controller="VideoController">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+</head>
+
+<body ng-controller="VideoController">
+
     <nav>
-      <h1>redditVideo</h1>
-      <a href="">Menu</>
+        <img src="/assets/redditVideoLogo.png" id="logo">
     </nav>
 
-    <div ng-view ng-show="videoList" class="ng-cloak">
-      <ul >
-        <li ng-repeat="video in videoList" >
-          <p>{{ video }}</p>
-        </li>
-      </ul>
+    <img src="/assets/spinner.gif" ng-show="loading" id="spinner">
 
+    <iframe width="720" height="400" src="{{ srcString }}" frameborder="0" allowfullscreen ng-show="videoList" class="ng-cloak vidList"></iframe>
+    <p ng-show="videoList" class="ng-cloak vidList">{{ currentVid.title }}</p>
+    <p ng-show="videoList" class="ng-cloak vidList">({{ currentVid.subreddit }})</p>
+
+    <div ng-view ng-show="videoList" class="ng-cloak vidList">
+        <div ng-repeat="video in videoList" ng-click="play(video)">
+
+            <div class="listContainer">
+                <div class="imgBox">
+                    <img src="{{ video.thumb }}">
+                </div>
+
+                <div class="infoBox">
+                    <p>{{ video.title }}</p>
+                    <p>({{ video.subreddit }})</p>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
     <script type="text/javascript" src="app.js"></script>
-  </body>
+</body>
+
 </html>
