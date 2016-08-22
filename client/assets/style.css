@@ -2,15 +2,15 @@
     display: none !important;
 }
 .title {
-  font-size: 18px;
-  font-weight: 800;
-  font-style: normal;
-  margin: 0;
-  padding: 0;
+    font-size: 18px;
+    font-weight: 800;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
 }
-p{
-  margin: 0;
-  padding: 0;
+p {
+    margin: 0;
+    padding: 0;
 }
 body {
     margin: auto;
@@ -24,7 +24,28 @@ nav {
     height: 70px;
     width: 720px;
     padding-top: 10px;
-    
+    position: relative;
+    border-bottom: 1px solid #cbcbcb;
+}
+select {
+    display: inline-block;
+    position: relative;
+    float: right;
+    vertical-align: middle;
+    margin-top: 22px;
+    margin-left: 6px;
+    font-size: 14px;
+    height: 70px;
+}
+ng-submit {
+    display: inline-block;
+    position: relative;
+    float: right;
+    vertical-align: middle;
+    margin-top: 21px;
+    margin-left: 6px;
+    font-size: 14px;
+    height: 70px;
 }
 a:link {
     text-decoration: none;
@@ -36,16 +57,22 @@ a:hover {
     text-decoration: underline;
 }
 #logo {
-    display: block;
+    display: inline-block;
     height: 59px;
     width: 84px;
 }
 youtube-video {
-  padding: 5px;
+    padding: 5px;
 }
-
+#shuffle{
+  height: 40px;
+  width: 40px;
+  vertical-align: top;
+  padding-left: 192px;
+  padding-top: 10px;
+}
 #spinner {
-    padding-top: 75px;
+    padding-left: 84px;
     height: 145px;
     width: 220px;
     display: block;

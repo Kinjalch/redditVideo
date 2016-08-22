@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>redditVideo</title>
+    <title>redditTube</title>
     <link rel="stylesheet" type="text/css" href="assets/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
@@ -12,6 +12,19 @@
 
     <nav>
         <img src="/assets/redditVideoLogo.png" id="logo">
+        <ng-submit ng-click="change()">
+            <input type="submit" id="submit" value=" create playlist " />
+        </ng-submit>
+        <img src="/assets/shuffle.png" ng-click="shuffle()" id="shuffle" >
+        <select ng-model="selectedSortBy" ng-options="b for b in sortBy">
+            <option value="">sort by</option>
+        </select>
+        <select ng-model="selectedPeriod" ng-options="p for p in timePeriods">
+            <option value="">age</option>
+        </select>
+        <select ng-model="selectedSubreddit" ng-options="s for s in subreddits">
+            <option value="">subreddit</option>
+        </select>
     </nav>
 
     <img src="/assets/spinner.gif" ng-show="loading" id="spinner">
@@ -30,7 +43,7 @@
 
                 <div class="infoBox">
                     <p>{{ video.title }}</p>
-                    <p><a ng-show="videoList" class="ng-cloak vidList" ng-href="{{ currentVid.link }}"" target="_blank">Found on /r/{{ currentVid.subreddit }}</a></p>
+                    <p><a ng-show="videoList" class="ng-cloak vidList" ng-href="{{ currentVid.link }}" target="_blank">from /r/{{ currentVid.subreddit }}</a></p>
                 </div>
             </div>
 
@@ -38,6 +51,7 @@
     </div>
 
     <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="/bower_components/underscore/underscore.js"></script>
     <script type="text/javascript" src="/bower_components/angular-youtube-mb/src/angular-youtube-embed.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
