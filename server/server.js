@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
 
 // Routes
 app.use(express.static('./client/'));
-app.use('/bower_components', express.static('/Users/kinjalchatterjee/Dev/RedditVideo/bower_components'));
+app.use('/bower_components', express.static('./bower_components'));
 app.get('/api/vids', function(req, res) {
   Promise.all([
       getDocs(),

@@ -1,16 +1,30 @@
 .ng-cloak {
     display: none !important;
 }
+.title {
+  font-size: 18px;
+  font-weight: 800;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+}
+p{
+  margin: 0;
+  padding: 0;
+}
 body {
     margin: auto;
     width: 720px;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
+    font-weight: 100;
 }
 nav {
-    display: inline;
-    height: 90px;
-    padding-bottom: 10px;
+    display: block;
+    height: 70px;
+    width: 720px;
+    padding-top: 10px;
+    
 }
 a:link {
     text-decoration: none;
@@ -23,11 +37,13 @@ a:hover {
 }
 #logo {
     display: block;
-    padding-top: 5px;
-    padding-bottom: 5px;
     height: 59px;
     width: 84px;
 }
+youtube-video {
+  padding: 5px;
+}
+
 #spinner {
     padding-top: 75px;
     height: 145px;
@@ -37,6 +53,7 @@ a:hover {
 }
 .vidList {
     width: 720px;
+    padding-top: 10px;
 }
 .listContainer {
     width: 710px;
@@ -61,5 +78,4 @@ div.listContainer:hover {
     display: inline-block;
     float: right;
     position: relative;
-    font-size: 12px;
 }

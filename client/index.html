@@ -16,12 +16,10 @@
 
     <img src="/assets/spinner.gif" ng-show="loading" id="spinner">
 
-
-    <youtube-video video-id="currentVid.id" player-width=" '720px' " player-height=" '400px' "></youtube-video>
-    <!-- <iframe width="720" height="400" src="{{ srcString }}" frameborder="0" allowfullscreen ng-show="videoList" class="ng-cloak vidList"></iframe> -->
-    <p ng-show="videoList" class="ng-cloak vidList">{{ currentVid.title }}</p>
-    <a ng-show="videoList" class="ng-cloak vidList" ng-href="{{ currentVid.link }}"" target="_blank">Found on /r/{{ currentVid.subreddit }}</a>
-
+    <youtube-video video-id="currentVid.id" player-width=" '720px' " player-height=" '406px' "></youtube-video>
+    <p ng-show="videoList" class="ng-cloak vidList title">{{ currentVid.title }}</p>
+    <a ng-show="videoList" class="ng-cloak vidList" ng-href="{{ currentVid.link }}" target="_blank">Found on /r/{{ currentVid.subreddit }}</a>
+    </br>
     <div ng-view ng-show="videoList" class="ng-cloak vidList">
         <div ng-repeat="video in videoList" ng-click="play(video)">
 
@@ -40,9 +38,10 @@
     </div>
 
     <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-youtube-mb/src/angular-youtube-embed.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
-    <script type="text/javascript" src="/bower_components/angular-youtube-mb/src/angular-youtube-embed.js"></script>
+
 </body>
 
 </html>

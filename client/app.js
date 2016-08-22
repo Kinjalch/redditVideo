@@ -24,7 +24,6 @@ var redditVideo = angular.module('redditVideo', ['youtube-embed'])
     $scope.loading = true;
     $scope.videoList;
     $scope.currentVid;
-    $scope.srcString;
 
     $scope.$on('youtube.player.ready', function($event, player) {
       player.playVideo();
@@ -37,7 +36,7 @@ var redditVideo = angular.module('redditVideo', ['youtube-embed'])
 
     $scope.play = function(video) {
       $scope.currentVid = video;
-      $scope.srcString = 'http://www.youtube.com/embed/' + $scope.currentVid.id + '?autoplay=1';
+      $window.scrollTo(0, 0);
     };
 
     function getVids() {
@@ -46,7 +45,6 @@ var redditVideo = angular.module('redditVideo', ['youtube-embed'])
           $scope.loading = false;
           $scope.videoList = vids;
           $scope.currentVid = $scope.videoList.shift();
-          $scope.srcString = 'http://www.youtube.com/embed/' + $scope.currentVid.id + '?autoplay=1';
         })
         .catch(function(error) {
           console.log("error: ", error);
