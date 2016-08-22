@@ -6,7 +6,6 @@
     <title>redditVideo</title>
     <link rel="stylesheet" type="text/css" href="assets/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
 </head>
 
 <body ng-controller="VideoController">
@@ -17,9 +16,11 @@
 
     <img src="/assets/spinner.gif" ng-show="loading" id="spinner">
 
-    <iframe width="720" height="400" src="{{ srcString }}" frameborder="0" allowfullscreen ng-show="videoList" class="ng-cloak vidList"></iframe>
+
+    <youtube-video video-id="currentVid.id" player-width=" '720px' " player-height=" '400px' "></youtube-video>
+    <!-- <iframe width="720" height="400" src="{{ srcString }}" frameborder="0" allowfullscreen ng-show="videoList" class="ng-cloak vidList"></iframe> -->
     <p ng-show="videoList" class="ng-cloak vidList">{{ currentVid.title }}</p>
-    <p ng-show="videoList" class="ng-cloak vidList">({{ currentVid.subreddit }})</p>
+    <a ng-show="videoList" class="ng-cloak vidList" ng-href="{{ currentVid.link }}"" target="_blank">Found on /r/{{ currentVid.subreddit }}</a>
 
     <div ng-view ng-show="videoList" class="ng-cloak vidList">
         <div ng-repeat="video in videoList" ng-click="play(video)">
@@ -31,15 +32,17 @@
 
                 <div class="infoBox">
                     <p>{{ video.title }}</p>
-                    <p>({{ video.subreddit }})</p>
+                    <p><a ng-show="videoList" class="ng-cloak vidList" ng-href="{{ currentVid.link }}"" target="_blank">Found on /r/{{ currentVid.subreddit }}</a></p>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+    <script type="text/javascript" src="/bower_components/angular-youtube-mb/src/angular-youtube-embed.js"></script>
 </body>
 
 </html>

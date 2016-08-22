@@ -16,6 +16,7 @@ app.use(function(req, res, next) {
 
 // Routes
 app.use(express.static('./client/'));
+app.use('/bower_components', express.static('/Users/kinjalchatterjee/Dev/RedditVideo/bower_components'));
 app.get('/api/vids', function(req, res) {
   Promise.all([
       getDocs(),
@@ -44,6 +45,7 @@ function pushVideos(data) {
       videoObject.thumb = data.data.children[i].data.thumbnail;
       videoObject.score = data.data.children[i].data.score;
       videoObject.subreddit = data.data.children[i].data.subreddit;
+      videoObject.link = 'http://www.reddit.com'+data.data.children[i].data.permalink;
       if( data.data.children[i].data.url.includes("https://www.youtube.com/watch?v=") ){
         videoObject.id = data.data.children[i].data.url.slice(32);
       }

@@ -1,4 +1,4 @@
-var redditVideo = angular.module('redditVideo', [])
+var redditVideo = angular.module('redditVideo', ['youtube-embed'])
   .config(function($sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist(['**']);
   })
@@ -19,11 +19,21 @@ var redditVideo = angular.module('redditVideo', [])
       getVids: getVids
     }
   })
-  .controller('VideoController', function($scope, Videos) {
+  .controller('VideoController', function($scope, $window, Videos) {
+    $window.scope = $scope;
     $scope.loading = true;
     $scope.videoList;
     $scope.currentVid;
     $scope.srcString;
+
+    $scope.$on('youtube.player.ready', function($event, player) {
+      player.playVideo();
+    });
+
+    $scope.$on('youtube.player.ended', function($event, player) {
+      $scope.currentVid = $scope.videoList.shift();
+      player.playVideo();
+    });
 
     $scope.play = function(video) {
       $scope.currentVid = video;
